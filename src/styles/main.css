@@ -1,0 +1,133 @@
+/* ======= Reset ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f7f7f9;
+  color: #333;
+  line-height: 1.6;
+  padding: 0;
+}
+
+/* ======= Layout ======= */
+header {
+  background: linear-gradient(90deg, #ff8ba7, #ffacc7);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* ======= Filtros ======= */
+.filters {
+  margin-bottom: 1rem;
+}
+
+select {
+  padding: 0.4rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ======= Grid ======= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ======= Cards ======= */
+.card {
+  background: white;
+  padding: 0.8rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+/* ======= Botones ======= */
+button {
+  background: #ff8ba7;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #ff6680;
+}
+
+#load-more {
+  margin-top: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ======= Status ======= */
+#status {
+  margin-top: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #e74c3c;
+}
+
+/* ======= Footer ======= */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f0f0f5;
+  color: #777;
+  border-top: 1px solid #ddd;
+}
+
+footer a {
+  color: #ff6680;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

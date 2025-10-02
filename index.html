@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CatGallery</title>
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <header>
+    <h1>🐱 Cat Gallery</h1>
+  </header>
+
+  <main>
+    <!-- Galería principal -->
+    <section id="gallery-section">
+      <h2>Galería de gatos</h2>
+
+      <div class="filters">
+        <label for="breed-select">Filtrar por raza:</label>
+        <select id="breed-select">
+          <option value="">-- Todas --</option>
+        </select>
+      </div>
+
+      <div id="cat-gallery" class="grid"></div>
+      <button id="load-more">Ver más</button>
+      <p id="status"></p>
+    </section>
+
+    <!-- Favoritos -->
+    <section id="favorites-section">
+      <h2>Favoritos ❤️</h2>
+      <div id="favorites" class="grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Hecho con 🐾 usando <a href="https://thecatapi.com/" target="_blank">The Cat API</a></p>
+  </footer>
+
+  <script type="module" src="/src/js/app.js"></script>
+</body>
+</html>
