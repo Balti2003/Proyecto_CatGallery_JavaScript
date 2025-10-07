@@ -1,80 +1,74 @@
 import { saveFavorite, removeFavorite, getFavorites } from "./storage.js";
 
-//renderizar gatos en galeria
+// Renderizar gatos en galería
 export const renderGallery = (cats, container) => {
-    container.InnerHTML = ``;
-    const favs = getFavorites();
+  container.innerHTML = "";
+  const favs = getFavorites();
 
-    cats.forEach(cat => {
-        const card = document.createElement("div");
-        card.classList.add("card");
+  cats.forEach(cat => {
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-        const img = document.createElement("img");
-        img.src = cat.url;
-        img.alt = "Gato";
+    const img = document.createElement("img");
+    img.src = cat.url;
+    img.alt = "Gato";
+    img.loading = "lazy";
+    
+    const btn = document.createElement("button");
+    const isFav = favs.some(f => f.url === cat.url);
 
-        const btn = document.createElement("button");
-        // Cambiar el texto si ya está en favoritos
-        if (favs.find(f => f.id === cat.id)) {
-        btn.textContent = "❌ Quitar";
-        btn.onclick = () => {
-            removeFavorite(cat.id);
-            renderFavorites(document.getElementById("favorites"));
-            renderGallery(cats, container); // actualizar el botón
-        };
-        } else {
-        btn.textContent = "❤️ Favorito";
-        btn.onclick = () => {
-            saveFavorite(cat);
-            renderFavorites(document.getElementById("favorites"));
-            renderGallery(cats, container); // actualizar el botón
-        };
-        }
+    btn.textContent = isFav ? "❌ Quitar" : "❤️ Favorito";
 
-        card.appendChild(img);
-        card.appendChild(btn);
-        container.appendChild(card);
+    btn.addEventListener("click", () => {
+      if (isFav) {
+        removeFavorite(cat.url);
+      } else {
+        saveFavorite(cat);
+      }
+
+      renderFavorites(document.getElementById("favorites"));
+      renderGallery(cats, container);
     });
-}
 
-//renderizar favoritos
+    card.appendChild(img);
+    card.appendChild(btn);
+    container.appendChild(card);
+  });
+};
+
+// Renderizar favoritos
 export const renderFavorites = (container) => {
-    const favs = getFavorites();
-    container.InnerHTML = ``;
+  const favs = getFavorites();
+  container.innerHTML = "";
 
-    if(favs.length === 0) {
-        container.InnerHTML = `<p>No tienes favoritos</p>`;
-        return;1
-    }
+  if (favs.length === 0) {
+    container.innerHTML = "<p>No tienes favoritos</p>";
+    return;
+  }
 
-    favs.forEach(cat => {
-        const card = document.createElement("div");
-        card.classList.add("card");
+  favs.forEach(cat => {
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-        const img = document.createElement("img");
-        img.src = cat.url;
-        img.alt = "Gato favorito";
+    const img = document.createElement("img");
+    img.src = cat.url;
+    img.alt = "Gato favorito";
 
-        const btn = document.createElement("button");
-        btn.textContent = "❌ Quitar";
-        btn.onclick = () => {
-            removeFavorite(cat.id);
-            renderFavorites(container);
-            
-            const galleryContainer = document.getElementById("cat-gallery");
-            if (galleryContainer.cats) {
-                renderGallery(galleryContainer.cats, galleryContainer);
-            }
-        };
-
-        card.appendChild(img);
-        card.appendChild(btn);
-        container.appendChild(card);
+    const btn = document.createElement("button");
+    btn.textContent = "❌ Quitar";
+    btn.addEventListener("click", () => {
+      removeFavorite(cat.url);
+      renderFavorites(container);
     });
-}
 
-//mostrar estado
+    card.appendChild(img);
+    card.appendChild(btn);
+    container.appendChild(card);
+  });
+};
+
+// Mostrar estado
 export const setStatus = (msg) => {
-    const status = document.getElementById("status");
-    status.textContent = msg;
-}
+  const status = document.getElementById("status");
+  status.textContent = msg;
+};

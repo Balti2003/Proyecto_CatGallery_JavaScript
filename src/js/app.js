@@ -12,16 +12,15 @@ let selectedBreed = "";
 const loadCats = async (reset = false) => {
   try {
     setStatus("Cargando...");
-    const newCats = await getCats(9, selectedBreed);
+    const newCats = await getCats(6, selectedBreed || "");
     cats = reset ? newCats : [...cats, ...newCats];
-    // guardamos el array en el contenedor para usarlo al refrescar botones
-    galleryContainer.cats = cats;
     renderGallery(cats, galleryContainer);
     setStatus("");
   } catch (err) {
+    console.error(err);
     setStatus("⚠️ Error al cargar gatos");
   }
-}
+};
 
 const loadBreeds = async () => {
   try {
@@ -35,9 +34,8 @@ const loadBreeds = async () => {
   } catch (err) {
     console.error("Error cargando razas", err);
   }
-}
+};
 
-// Inicializar
 document.addEventListener("DOMContentLoaded", () => {
   loadCats();
   loadBreeds();

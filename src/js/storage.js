@@ -6,12 +6,12 @@ export const getFavorites = () => {
 
 export const saveFavorite = (cat) => {
     const favs = getFavorites();
-    if(!favs.find(fav => fav.id === cat.id)) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify([...favs, { id: cat.id, url: cat.url }]));
+    if(!favs.find(fav => fav.url === cat.url)) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...favs, cat]));
     }
 }
 
-export const removeFavorite = (id) => {
-    const favs = getFavorites().filter(fav => fav.id !== id);
+export const removeFavorite = (catUrl) => {
+    const favs = getFavorites().filter(fav => fav.url !== catUrl);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(favs));
 }
